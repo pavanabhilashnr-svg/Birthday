@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        /* --- GENERAL & LAYOUT STYLES --- */
+        body {
+            font-family: 'Times New Roman', serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            background-color: #F8BBD0; /* Light Pink Background */
+            color: #333; 
+            overflow: hidden; 
+            position: relative;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* Balloon Animation */
+        .balloon {
+            position: absolute;
+            width: 80px;
+            height: 100px;
+            background-color: #E91E63; /* Dark Pink */
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: floatBalloon 15s ease-in-out infinite;
+            opacity: 0.8;
+            box-shadow: inset -10px -10px 0px rgba(0,0,0,0.1);
+            cursor: pointer; /* Indicate it's clickable */
+            z-index: 5; /* Below main text/icon, above background */
+            transition: transform 0.1s ease-out, opacity 0.1s ease-out; /* For popping effect */
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 20px;
+            background-color: #E91E63; /* Dark Pink */
+            bottom: -5px;
+            left: calc(50% - 5px);
+            border-radius: 0 0 50% 50%;
+            transform: rotate(180deg);
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.7); /* White string */
+            bottom: -45px;
+            left: calc(50% - 1px);
+        }
+
+        /* Different balloon positions and animation delays */
+        .balloon:nth-child(2) { left: 10%; animation-duration: 12s; animation-delay: 2s; } 
+        .balloon:nth-child(3) { left: 70%; animation-duration: 18s; animation-delay: 4s; } 
+        .balloon:nth-child(4) { left: 30%; animation-duration: 10s; animation-delay: 1s; } 
+        .balloon:nth-child(5) { left: 85%; animation-duration: 16s; animation-delay: 3s; } 
+
+        @keyframes floatBalloon {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* --- INTRO SECTION STYLES (BIRTHDAY WISH) --- */
+        #intro-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #E91E63; /* Dark Pink for the wish text */
+            font-family: 'Playfair Display', serif; 
+            font-size: 4em;
+            text-shadow: 2px 2px rgba(255, 255, 255, 0.7); 
+            margin-bottom: 40px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        /* Surprise Icon Styling */
+        .surprise-icon-container {
+            position: relative;
+            width: 180px; /* Slightly smaller */
+            height: 180px;
+            border-radius: 50%; /* Circular */
+            background-color: #E91E63; /* Dark Pink background for the circle */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* More prominent shadow */
+            border: 3px solid #FFD700; /* Gold border for emphasis */
+        }
+
+        .surprise-icon-container:hover {
+            transform: scale(1.08); /* More pronounced hover effect */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .surprise-text {
+            color: white; /* White text for "Surprise!" */
+            font-family: 'Dancing Script', cursive; /* A more playful, elegant font for 'Surprise!' */
+            font-size: 2.5em;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            pointer-events: none; /* Allows click to pass through to the container */
+        }
+
+        /* --- SPECIAL NOTE SECTION STYLES --- */
+        #note-section {
+            /* Initially hidden */
+            display: none; 
+            text-align: center;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            background: white;
+            border: 3px solid #E91E63; /* Dark Pink border */
+            font-family: 'Georgia', serif;
+            color: #6a0572; 
+            z-index: 20;
+        }
+
+        #note-section h2 {
+            font-size: 2.5em;
+            color: #E91E63; /* Dark Pink */
+            margin-bottom: 20px;
+        }
+
+        #note-section p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .signature {
+            margin-top: 30px;
+            font-style: italic;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+
+    <div class="balloon" style="left: 5%; top: 100%;" onclick="popBalloon(this)"></div>
+    <div class="balloon" style="left: 20%; top: 120%;" onclick="popBalloon(this)"></div>
+    <div class="balloon" style="left: 40%; top: 110%;" onclick="popBalloon(this)"></div>
+    <div class="balloon" style="left: 60%; top: 130%;" onclick="popBalloon(this)"></div>
+    <div class="balloon" style="left: 80%; top: 105%;" onclick="popBalloon(this)"></div>
+
+    <div id="intro-section">
+        <h1>Happy Birthday Sandrechi😚</h1>
+
+        <div class="surprise-icon-container" onclick="revealNote()">
+            <span class="surprise-text">Surprise Chechipenne😁</span>
+        </div>
+    </div>
+
+    <div id="note-section">
+        <h2>💌 There's Something Special You wanna Hear🌟</h2>
+        <p>
+            Wishing you a day filled with all the gentle joys and beautiful moments you deserve. 
+            Ente Sandrechik(snehede avumbo ente koode aanalo).Love you alot as a chechi,person ,sister , daughter etc..... etc.......Ith avl chechiyod paranjtondavum enalum njn paraya
+Enthaan areela enik epolum oru chechi venonayrn, angne olond ivde ammede frnds chechi maar oke ayit njn nalla koot ayirn.
+Pakshe snehene parichaypett athukazhinj sandy vann ingne serikm enne oru brotherinepole nokne oke kanumbo enik entopoleyaa aa aloiche oke nadanole thonum🥹
+        </p>
+        <p>
+            Serikm njn oru chechi enna oru image mindil kando athole aa sandy enik.Like njn oro kaaryom orthirknd chechi chelapo oorknondavila paranje.pand paranjile njn angot vana ponnpole nokun ,pinne entha avl orike paranj chechi paranjoon enik dumbells oke vangi thera enn enik athonum vendato enalum chechi angne oke parayne kekan thanne enth sandoshano🌝pinne epolum enne ingne oron oke paranj support cheyumbo athipo examinte anelum pand ivde kochachante mone kaliyakiyapo chechi paranjile ath ishtalla cheyne seri allanoke apol oke enik oru chechi ondayrnel enn njn chindiche oke nadaknole thonum enne care cheyanum thett chytha paranj tharanum oke ipo enik oru chechi ond enoke oru feel ah apo 😄avlde chechi ayitalla njn sandyne kanane ente swntham chechinepole aah
+        </p>
+         </p>
+             Athond apo ee aniyantel gift tharan ee technical idea ee kitiyol .kshemiknm apo onude Happiest Birthday Chechipenne enum happy ayit irikne ,enik aa chechine aa ishtam😘Love you sandy🫂😚 
+          </p>
+        <p class="signature">— With love and appreciation.</p>
+    </div>
+
+    <script>
+        function revealNote() {
+            // 1. Hide the introduction section
+            document.getElementById('intro-section').style.display = 'none';
+
+            // 2. Show the special note section
+            const note = document.getElementById('note-section');
+            note.style.display = 'block';
+
+            // 3. Change background for the reveal effect
+            document.body.style.background = 'linear-gradient(to right, #FFECF4, #FFE3E3)'; 
+            document.body.style.color = '#555'; 
+            
+            // Optional: Hide balloons after click for cleaner note display
+            document.querySelectorAll('.balloon').forEach(b => b.style.display = 'none');
+        }
+
+        function popBalloon(balloonElement) {
+            // Apply a quick scale-down and fade out effect
+            balloonElement.style.transform = 'scale(0.1)';
+            balloonElement.style.opacity = '0';
+            
+            // Remove the balloon from the DOM after the animation (0.1s)
+            setTimeout(() => {
+                balloonElement.remove();
+            }, 100); 
+        }
+    </script>
+
+</body>
+</html>
